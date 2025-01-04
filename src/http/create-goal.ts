@@ -1,11 +1,11 @@
 interface CreateGoalRequest {
   title: string
-  desiredWeekFrequency: number
+  desiredWeeklyFrequency: number
 }
 
 export async function createGoal({
   title,
-  desiredWeekFrequency,
+  desiredWeeklyFrequency,
 }: CreateGoalRequest) {
   await fetch('http://localhost:3333/goals', {
     method: 'POST',
@@ -14,7 +14,7 @@ export async function createGoal({
     },
     body: JSON.stringify({
       title,
-      desiredWeekFrequency,
+      desiredWeeklyFrequency,
     }),
   })
 }

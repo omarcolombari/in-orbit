@@ -21,7 +21,7 @@ import { useQueryClient } from '@tanstack/react-query'
 
 const createGoalFormSchema = z.object({
   title: z.string().min(1, 'Informe a atividade que deseja realizar'),
-  desiredWeekFrequency: z.coerce.number().min(1).max(7),
+  desiredWeeklyFrequency: z.coerce.number().min(1).max(7),
 })
 
 type CreateGoalFormSchema = z.infer<typeof createGoalFormSchema>
@@ -37,7 +37,7 @@ export function CreateGoal() {
   async function handleCreateGoal(data: CreateGoalFormSchema) {
     await createGoal({
       title: data.title,
-      desiredWeekFrequency: data.desiredWeekFrequency,
+      desiredWeeklyFrequency: data.desiredWeeklyFrequency,
     })
 
     queryClient.invalidateQueries({ queryKey: ['summary'] })
@@ -87,7 +87,7 @@ export function CreateGoal() {
             <div className="flex flex-col gap-2">
               <Label htmlFor="title">Quantas vezes na semana?</Label>
               <Controller
-                name="desiredWeekFrequency"
+                name="desiredWeeklyFrequency"
                 control={control}
                 defaultValue={1}
                 render={({ field }) => {
